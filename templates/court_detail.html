@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .court-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* To position the compass correctly */
+        }
+
+        .court img {
+            width: 300px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; /* Ensure it doesn't exceed the container width */
+            transform: rotate({{ bearing }}deg); /* Rotate the tennis court image dynamically */
+        }
+
+        .spaced {
+            margin-bottom: 200px; /* Adjust the value as needed */
+        }
+
+        .compass {
+            position: absolute;
+            bottom: 10px;
+            left: 300px;
+            width: 300px; /* Adjust the size as needed */
+        }
+        .sun {
+            position: absolute;
+            width: 100px; /* Adjust the size of the sun image as needed */
+            height: 100px;
+            transition: transform 0.5s ease; /* Smooth transition for movement */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Court Details for {{ location }} - Court {{ court_number }}</h1>
+    <p class="spaced">Sun Azimuth: {{ sun_azimuth }}°  -  Time: {{ time }}  -  Court bearing: {{ bearing }}  -  Sun altitude  {{sun_altitude}} </p>
+    <div class="court-container">
+        <div class="court">
+            <img src="{{ url_for('static', filename='images/tennis_court.png') }}" alt="Tennis Court Layout">
+        </div>
+        <img src="{{ url_for('static', filename='images/compass.png') }}" alt="Compass" class="compass">
+        {% if sun_altitude >= 0 %}
+        <img src="{{ url_for('static', filename='images/sun_day.png') }}" alt="Sun" class="sun" id="sun">
+        {% else %}
+        <img src="{{ url_for('static', filename='images/sun_night.png') }}" alt="Sun" class="sun" id="sun">
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sunAzimuth = {{ sun_azimuth }};
+            const sunElement = document.getElementById('sun');
+
+            // Calculate the position based on the azimuthal angle
+            const containerWidth = document.querySelector('.court-container').offsetWidth;
+            const containerHeight = document.querySelector('.court-container').offsetHeight;
+
+            // Convert azimuth to radians
+        const angleRad = (sunAzimuth -90) * (Math.PI / 180);
+
+            // Calculate the x and y positions
+            const x = 0 + 380 * Math.cos(angleRad);
+        const y = 230 + 380*Math.sin(angleRad);
+
+            // Set the sun's position
+            sunElement.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>

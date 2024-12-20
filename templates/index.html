@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Court Sunlight Conditions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Tennis Court Sunlight Conditions in {{ borough | capitalize }}</h1>
+
+    <form method="POST" action="{{ url_for('index', borough=borough) }}">
+        <label for="start_time">Select start date and time:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% for location, table_data in all_table_data.items() %}
+    <h2>{{ location }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Court Number</th>
+                {% for time in times %}
+                <th>{{ time.strftime("%H:%M") }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+            <tr>
+                <td>{{ row.court_number }}</td>
+                {% for time in times %}
+                <td style="background-color: {{ row[time.strftime('%H:%M')].colour }}">
+                    <a href="{{ url_for('court_detail', location=location, court_number=row.court_number, time=time.strftime('%H:%M'), bearing=row.bearing) }}">
+                        {{ row[time.strftime('%H:%M')].status }}
+                    </a>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+</body>
+</html>

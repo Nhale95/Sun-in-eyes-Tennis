@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Tennis_sun_in_eyes", "Tennis_sun_in_eyes.pyproj", "{66296DDE-76D4-46C3-8B7C-2EAE8F38D110}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66296DDE-76D4-46C3-8B7C-2EAE8F38D110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66296DDE-76D4-46C3-8B7C-2EAE8F38D110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {318A4C23-B84E-414B-9D0F-539DE2633455}
+	EndGlobalSection
+EndGlobal

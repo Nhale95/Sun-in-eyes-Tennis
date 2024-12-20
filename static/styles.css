@@ -1,0 +1,43 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #5a5a5a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    background-color: white;
+    color: black; /* Ensure text is black */
+}
+
+    /* Add a style for the color cells */
+    td[style*="background-color"] {
+        color: black; /* Change text color to white for better visibility */
+    }
+
+h2 {
+    color: #346357
+}

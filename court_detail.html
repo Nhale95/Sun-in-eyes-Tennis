@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .court-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .court {
+            width: 800px; /* Adjust the width as needed */
+            height: 400px; /* Adjust the height as needed */
+            border: 2px solid #000;
+            position: relative;
+            background-color: #7cb342;
+        }
+        .line {
+            position: absolute;
+            background-color: #fff;
+        }
+        .baseline, .net, .service-line {
+            height: 2px;
+            width: 100%;
+            top: 0;
+        }
+        .baseline.bottom, .service-line.bottom {
+            top: 100%;
+        }
+        .sideline {
+            width: 2px;
+            height: 100%;
+            left: 0;
+        }
+        .sideline.right {
+            left: 100%;
+        }
+        .net {
+            top: 50%;
+        }
+        .service-line {
+            top: 25%;
+        }
+        .center-service-line {
+            height: 100%;
+            width: 2px;
+            top: 0;
+            left: 50%;
+        }
+        .compass {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .compass:after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 50%;
+            background-color: red;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate({{ sun_azimuth }}deg);
+        }
+        .north {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Court Details for {{ location }} - Court {{ court_number }}</h1>
+    <p>Time: {{ time }}</p>
+    <p>Sun Azimuth: {{ sun_azimuth }}°</p>
+
+    <!--<div class="court-container">-->
+        <!--<div class="court">-->
+            <!-- Baselines -->
+            <!--<div class="line baseline"></div>-->
+            <!--<div class="line baseline bottom"></div>-->
+            <!-- Sidelines -->
+            <!--<div class="line sideline"></div>
+            <div class="line sideline right"></div>-->
+            <!-- Net -->
+            <!--<div class="line net"></div>-->
+            <!-- Service Lines -->
+            <!--<div class="line service-line"></div>
+            <div class="line service-line bottom"></div>-->
+            <!-- Center Service Line -->
+            <!--<div class="line center-service-line"></div>-->
+        <!--</div>-->
+
+        <!--<div class="compass">
+            <div class="north">N</div>
+        </div>
+    </div>-->
+</body>
+</html>
